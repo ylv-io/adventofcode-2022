@@ -21,6 +21,21 @@ contract Calories {
         }
     }
 
+    // a function to find top three Elfs with the most calories and return the
+    // total of their calories
+    function findTopThree() public returns (uint256) {
+        // create a variable to store the max calories
+        uint256 totalCalories;
+        uint256 maxElf;
+        for (uint256 index = 0; index < 3; index++) {
+            maxElf = findMaxElf();
+            totalCalories += getCalories(maxElf);
+            // remove top elf
+            elves[maxElf] = 0;
+        }
+        return totalCalories;
+    }
+
     // a function to find the Elf with the most Calories
     function findMaxElf() public view returns (uint256) {
         uint256 maxCalories = 0;
